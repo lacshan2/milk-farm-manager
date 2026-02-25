@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Farm Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/cow-logo.png">
+</head>
+<body>
+    <!-- Authentication screens -->
+    <div id="auth-container">
+        <div class="auth-box" id="signin-box">
+            <h2 data-i18n="sign_in">Sign In</h2>
+            <input type="text" id="signin-username" placeholder="Username" data-i18n-placeholder="name">
+            <input type="password" id="signin-password" placeholder="4-digit PIN" maxlength="4" data-i18n-placeholder="pass4">
+            <button id="signin-button" data-i18n="sign_in">Sign In</button>
+            <p data-i18n="no_account">No account? <a href="#" id="show-signup" data-i18n="sign_up">Sign Up</a></p>
+            <p class="error" id="signin-error"></p>
+        </div>
+        <div class="auth-box" id="signup-box" style="display:none;">
+            <h2 data-i18n="sign_up">Sign Up</h2>
+            <input type="text" id="signup-username" placeholder="Username" data-i18n-placeholder="name">
+            <input type="password" id="signup-password" placeholder="4-digit PIN" maxlength="4" data-i18n-placeholder="pass4">
+            <button id="signup-button" data-i18n="sign_up">Sign Up</button>
+            <p data-i18n="have_account">Have an account? <a href="#" id="show-signin" data-i18n="sign_in">Sign In</a></p>
+            <p class="error" id="signup-error"></p>
+        </div>
+    </div>
+
+    <!-- Main app container -->
+    <div id="app" style="display:none;">
+        <header>
+            <div class="logo-container">
+                <img src="images/cow-logo.png" alt="Cow Logo" id="main-logo">
+            </div>
+            <nav>
+                <button class="nav-btn active" data-page="home" data-i18n="home">Home</button>
+                <button class="nav-btn" data-page="cows" data-i18n="cows">Cows</button>
+                <button class="nav-btn" data-page="expense" data-i18n="expense">Expense</button>
+                <button class="nav-btn" data-page="info" data-i18n="info">Info</button>
+            </nav>
+            <div class="lang-toggle">
+                <select id="lang-select">
+                    <option value="en">EN</option>
+                    <option value="ta">தமிழ்</option>
+                </select>
+            </div>
+            <button id="logout-button" data-i18n="logout">Logout</button>
+        </header>
+        <main>
+            <section id="home-page" class="page">
+                <button id="clear-data" class="centered" data-i18n="clear_data">Clear All Data</button>
+                <div class="cards" id="home-cards"></div>
+                <p class="empty" id="home-empty" data-i18n="no_data">No data available.</p>
+            </section>
+            <section id="cows-page" class="page" style="display:none;">
+                <button id="add-cow-btn" class="centered" data-i18n="add_cow">Add/Edit Cow</button>
+                <div id="cow-form-container" class="form-container" style="display:none;">
+                    <h3 data-i18n="add_cow">Add Cow</h3>
+                    <input type="text" id="cow-id" placeholder="ID" data-i18n-placeholder="cow_id">
+                    <input type="text" id="cow-name" placeholder="Name" data-i18n-placeholder="name">
+                    <select id="cow-gender">
+                        <option value="Male" data-i18n="male">Male</option>
+                        <option value="Female" data-i18n="female">Female</option>
+                    </select>
+                    <input type="date" id="cow-dob" data-i18n-placeholder="dob">
+                    <input type="file" id="cow-photo" accept="image/*">
+                    <img id="cow-photo-preview" class="form-photo-preview" src="" alt="">
+                    <button id="save-cow" class="centered" data-i18n="save">Save</button>
+                    <button id="cancel-cow" data-i18n="cancel">Cancel</button>
+                    <p class="error" id="cow-error"></p>
+                </div>
+                <div id="cows-list" class="cards"></div>
+                <p class="empty" id="cows-empty" data-i18n="no_data">No data available.</p>
+            </section>
+            <section id="expense-page" class="page" style="display:none;">
+                <div class="form-container">
+                    <h3 data-i18n="add_expense">Add Expense</h3>
+                    <input type="date" id="exp-date" data-i18n-placeholder="dob">
+                    <select id="exp-type">
+                        <option value="Food" data-i18n="food">Food</option>
+                        <option value="Medicine" data-i18n="medicine">Medicine</option>
+                        <option value="Salary" data-i18n="salary">Salary</option>
+                        <option value="Other" data-i18n="other">Other</option>
+                    </select>
+                    <div class="currency-input"><span class="currency">LKR</span><input type="text" id="exp-amount" placeholder="Amount" data-i18n-placeholder="amount"></div>
+                    <input type="text" id="exp-notes" placeholder="Notes" data-i18n-placeholder="notes">
+                    <button id="save-exp" class="centered" data-i18n="save">Save</button>
+                    <p class="error" id="exp-error"></p>
+                </div>
+                <div id="expenses-list" class="cards"></div>
+                <p class="empty" id="expenses-empty" data-i18n="no_data">No data available.</p>
+                <div class="totals">
+                    <p data-i18n="total_expenses">Total Expenses: <span id="total-exp">0</span></p>
+                    <p data-i18n="monthly_expense">This Month: <span id="month-exp">0</span></p>
+                </div>
+            </section>
+            <section id="info-page" class="page" style="display:none;">
+                <div class="info-container">
+                    <img src="images/info-logo.png" alt="Info Logo" class="info-logo">
+                    <h2>Milk Farm Manager</h2>
+                    <p data-i18n="developed_by">Developed by Valacshan</p>
+                    <p data-i18n="version">Version 1.0</p>
+                    <p data-i18n="app_desc">A simple responsive milk farm manager app built with only HTML, CSS and JavaScript using localStorage.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
