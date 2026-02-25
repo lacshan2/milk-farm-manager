@@ -10,7 +10,18 @@
 <body>
     <!-- Authentication screens -->
     <div id="auth-container">
-        <div class="auth-box" id="signin-box">
+        <div class="auth-wrapper">
+            <div class="auth-left">
+                <img src="cow-logo.png" alt="Cow Logo" class="auth-logo">
+                <h1 class="auth-title">Milk Farm Manager</h1>
+                <p class="auth-sub">Simple, local & responsive</p>
+            </div>
+            <div class="auth-right">
+                <div class="auth-tabs">
+                    <button id="tab-signin" class="auth-tab" data-i18n="sign_in">Sign In</button>
+                    <button id="tab-signup" class="auth-tab" data-i18n="sign_up">Sign Up</button>
+                </div>
+                <div class="auth-box" id="signin-box">
             <h2 data-i18n="sign_in">Sign In</h2>
             <input type="text" id="signin-username" placeholder="Username" data-i18n-placeholder="name">
             <input type="password" id="signin-password" placeholder="4-digit PIN" maxlength="4" data-i18n-placeholder="pass4">
@@ -25,6 +36,8 @@
             <button id="signup-button" data-i18n="sign_up">Sign Up</button>
             <p data-i18n="have_account">Have an account? <a href="#" id="show-signin" data-i18n="sign_in">Sign In</a></p>
             <p class="error" id="signup-error"></p>
+        </div>
+            </div>
         </div>
     </div>
 
